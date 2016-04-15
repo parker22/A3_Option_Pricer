@@ -1,0 +1,123 @@
+# Report
+
+![Alt text](./figures/overall.png)
+
+
+
+## Overview
+
+The program is written in Python 2.7 and several math related packages are included. We use Qt5 + Pyqt5 for user interface design. The executable file for windows platform is complied with Pyinstaller.
+
+The program has included all the required functionalities including:
+
+* Implied volatility calculation
+* European option pricing
+* American option pricing
+* Arithmetic/ Geometric Asian options and basket options pricing
+
+
+## Features
+
+Tested environment:
+
+Microsoft Windows  10 (64-bit)
+
+Python 2.7
+
+Pyqt 5.6.0 + Pyqt5
+
+## Install
+
+The option pricer has been packed as a windows runnable program. After downloaded, unzip the a3.zip file, you can then find the executable file 'a3.exe' under the unzipped folder.
+
+Simply run the a3.exe and hopefully the program will be popped up.
+
+## Usage
+
+All the functionalities are navigated by a dropdown list where you can switch between different functions. 
+
+![Alt text](./figures/pricer_dropdown.png)
+
+### Implied Volatility
+
+1. Click the dropdown menu and select 'Implied Volatility'
+2. Input all parameters: (from top to bottom) and click 'Calculate' button
+   * Stock Price ($)
+   * Strike Price ($)
+   * Interest Rate (%)
+   * Repo Rate (%)
+   * Maturity (in years)
+   * Premium ($) : Option Premium
+
+### American Option
+
+1. Click the dropdown menu and select 'American'.
+2. Input all parameters, besides the common parameters, you also need to specify the steps of the binomial tree (step).
+
+### European Option
+
+1. Click the dropdown menu and select 'European '.
+2. Input all parameters, and click 'Calculate' button.
+
+### Asian Option
+
+1. Click the dropdown menu and select 'Asian'. After that,  the additional parameters and options will be visible. 
+
+   ![](./figures/special_pars_for_asian.png)
+
+2. Number of Assets: 'Single' should be selected if you want to calculate one asset only. As 'Basket' indicates the basket option pricing (supports two assets pricing).
+
+3. Type of pricer: 'Geometric' and 'Arithmetic' options are provided, which conducts closed form calculation and 'Monte Carlo' method respectively.
+
+4. You may also need to specify the control variate method (no control variate, or geometric Asian option).
+
+5. Input all parameters, besides the common parameters, you also need to specify the correlation between two assets if you are in need of the basket option pricing.
+
+
+## Functionalities
+
+### Implied Volatilities:
+
+```
+def implied_volatility(ty, S, K, T, r, price_true, q=0)
+```
+
+Special Input Parameters:
+
+| Name                | Info           |
+| ------------------- | -------------- |
+| price_true  (float) | Option premium |
+| q  (float)          | Repo rate      |
+
+The Newton's method is used which provides rapid convergence. Tolerance is set to 1.0e-8, and the maximum number of iterations are 100.
+
+Before the iteration, we also checked the validity of the Option premium by checking if it exceeds the upper or lower bound. Function as below (for call option):
+
+```
+if ty == 'C':
+        if (price_true < max((S * exp(-q * T) - K * exp(-r * T)), 0)) \
+                or (price_true > S * exp(-q * T)):
+            return 'NaN'
+```
+
+### American Options
+
+```
+def binomial_option(cp_type, exp_t, s, k, r, sigma, n)
+```
+
+Special Input Parameters:
+
+| Name | Info            |
+| ---- | --------------- |
+| n    | Number of steps |
+
+We calculate the American option price with a binomial price tree.
+
+The price or payoffs of each node is stored in a list. While it backtracks the tree from leaf nodes to the root, eg..
+
+```
+p_rec.append((pay[m] * p + pay[m + 1] * (1 - p)) * exp(-r * delta_t))
+```
+
+Finally, it returns the price pay[0] which is at the root of the binomial tree.
