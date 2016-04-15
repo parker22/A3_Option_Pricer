@@ -1,5 +1,4 @@
 from math import *
-from scipy.stats import norm
 
 
 def binomial_option(cp_type, exp_t, s, k, r, sigma, n):

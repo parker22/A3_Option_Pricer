@@ -1,11 +1,10 @@
 # -*- coding: UTF-8 -*-
 # Filename: Assignment2.py
 # COMP7405 Assignment3
-# Author: LIU Jiahe (3035237365) ZHAN Hui(xxxxxxxxxx)
+# Author: LIU Jiahe (3035237365) ZHAN Hui(3035249227)
 
 import traceback
-import sys, os
-from math import *
+import sys
 from scipy.stats import norm
 from PyQt5 import QtWidgets, QtGui
 from option_ui import Ui_OptionPricer
@@ -54,17 +53,17 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
             self.label_step.show()
             self.lineEdit_step.show()
 
-
     def init_method(self, method):
         if method:
             self.groupBox_control_variate.show()
             self.label_paths.show()
+            self.groupBox_conf.show()
             self.lineEdit_path.show()
         else:
             self.groupBox_control_variate.hide()
             self.label_paths.hide()
+            self.groupBox_conf.hide()
             self.lineEdit_path.hide()
-
 
     def get_exercise(self):
         if self.comboBox_kindof_option.currentIndex() == 0:
@@ -159,6 +158,7 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
             elif option_type == 'IV_C':
                 print option_type
                 p = self.get_addition_par(self.lineEdit_step)
+                print 'C', s, k, mat_t, r, p, vol
                 result = implied_volatility.implied_volatility('C', s, k, mat_t, r, p, vol)
 
             elif option_type == 'IV_P':
@@ -175,19 +175,25 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
                     if type == 'ARI':
                         n = self.get_addition_par(self.lineEdit_step)
                         m = self.get_addition_par(self.lineEdit_path)
-                        result = monte_carlo.ari_asian('C', s, k, mat_t, r, vol, int(n), int(m), cv)[0]
+                        results = monte_carlo.ari_asian('C', s, k, mat_t, r, vol, int(n), int(m), cv)
+                        result = results[0]
+                        self.label_result_value_1.setText(str(results[1]))
+                        self.label_result_value_2.setText(str(results[2]))
                 if assets == 2:
                     if type == 'GEO':
                         s2 = self.get_addition_par(self.lineEdit_stock_price_2)
-                        v2 = self.get_addition_par(self.lineEdit_vol2)/100
-                        rho = self.get_addition_par(self.lineEdit_corr)/100
-                        result = closed_form.geo_basket('C', s,s2, k,mat_t,r, vol,v2, rho)
+                        v2 = self.get_addition_par(self.lineEdit_vol2) / 100
+                        rho = self.get_addition_par(self.lineEdit_corr) / 100
+                        result = closed_form.geo_basket('C', s, s2, k, mat_t, r, vol, v2, rho)
                     if type == 'ARI':
                         s2 = self.get_addition_par(self.lineEdit_stock_price_2)
                         m = self.get_addition_par(self.lineEdit_path)
                         v2 = self.get_addition_par(self.lineEdit_vol2) / 100
                         rho = self.get_addition_par(self.lineEdit_corr) / 100
-                        result = monte_carlo.ari_basket('C', s, s2, k ,mat_t, r, vol, v2, rho, int(m), cv)[0]
+                        results = monte_carlo.ari_basket('C', s, s2, k, mat_t, r, vol, v2, rho, int(m), cv)
+                        result = results[0]
+                        self.label_result_value_1.setText(str(results[1]))
+                        self.label_result_value_2.setText(str(results[2]))
 
             elif option_type == 'AS_P':
                 print option_type
@@ -199,7 +205,10 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
                     if type == 'ARI':
                         n = self.get_addition_par(self.lineEdit_step)
                         m = self.get_addition_par(self.lineEdit_path)
-                        result = monte_carlo.ari_asian('P', s, k, mat_t, r, vol, int(n), int(m), cv)[0]
+                        results = monte_carlo.ari_asian('P', s, k, mat_t, r, vol, int(n), int(m), cv)
+                        result = results[0]
+                        self.label_result_value_1.setText(str(results[1]))
+                        self.label_result_value_2.setText(str(results[2]))
                 if assets == 2:
                     if type == 'GEO':
                         s2 = self.get_addition_par(self.lineEdit_stock_price_2)
@@ -211,13 +220,19 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
                         m = self.get_addition_par(self.lineEdit_path)
                         v2 = self.get_addition_par(self.lineEdit_vol2) / 100
                         rho = self.get_addition_par(self.lineEdit_corr) / 100
-                        result = monte_carlo.ari_basket('P', s, s2, k, mat_t, r, vol, v2, rho, int(m), cv)[0]
+                        results = monte_carlo.ari_basket('P', s, s2, k, mat_t, r, vol, v2, rho, int(m), cv)
+                        result = results[0]
+                        self.label_result_value_1.setText(str(results[1]))
+                        self.label_result_value_2.setText(str(results[2]))
 
             self.label_result_value.setText(str(result))
             print result
 
         except TypeError:
             self.show_error("Please input all parameters ....")
+            print "Error"
+        except ZeroDivisionError:
+            self.show_error("Some parameter(s) cannot be zero")
             print "Error"
 
     def msg(self):
@@ -233,6 +248,7 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
         if i == 0:  # European
             self.widget_asset2.hide()
             self.widget_asian_pars.hide()
+            self.groupBox_conf.hide()
             self.lineEdit_step.setVisible(False)
             self.label_step.setVisible(False)
             self.lineEdit_path.setVisible(False)
@@ -242,6 +258,7 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
         elif i == 1:  # American
             self.widget_asset2.hide()
             self.widget_asian_pars.hide()
+            self.groupBox_conf.hide()
             self.lineEdit_step.setVisible(True)
             self.label_step.setVisible(True)
             self.lineEdit_path.setVisible(False)
@@ -264,6 +281,7 @@ class OptionUI(QtWidgets.QMainWindow, Ui_OptionPricer):
             self.lineEdit_step.setVisible(True)
             self.label_step.setVisible(True)
             self.lineEdit_path.setVisible(False)
+            self.groupBox_conf.hide()
             self.label_paths.setVisible(False)
             self.label_step.setText("Premium: ($)")
             self.label_vol1.setText("Repo Rate: (%)")
@@ -273,31 +291,9 @@ def bs_norm(d):
     return norm.cdf(d, 0, 1)
 
 
-def geo_asian_option():
-    s0 = 100
-    sigma = 0.3
-    r = 0.05
-    mat_t = 3
-    k = 100
-    n = 50
-
-    sigma_sq = pow(sigma, 2) * (n + 1) * (2 * n + 1) / (6 * n * n)
-    mu = 0.5 * sigma_sq + (r - 0.5 * pow(sigma, 2)) * (n + 1) / (2 * n)
-    d1 = (log(s0 / k) + (mu + 0.5 * pow(sigma_sq, 2)) * mat_t) / (sqrt(sigma_sq * mat_t))
-    d2 = d1 - sqrt(sigma_sq * mat_t)
-    n1 = bs_norm(d1)
-    n2 = bs_norm(d2)
-    geo = exp(-r * mat_t) * (s0 * exp(mu * mat_t) * n1 - k * n2)
-
-    print geo
-
-    print "test"
-
 
 def main():
     try:
-        geo_asian_option()
-
         app = QtWidgets.QApplication(sys.argv)
         option_ui = OptionUI()
         option_ui.show()

@@ -20,15 +20,27 @@
    <widget class="QWidget" name="verticalLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>110</y>
-      <width>160</width>
+      <x>40</x>
+      <y>80</y>
+      <width>151</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>Exercise Style:</string>
        </property>
@@ -39,6 +51,12 @@
      </item>
      <item>
       <widget class="QComboBox" name="comboBox_kindof_option">
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="iconSize">
         <size>
          <width>16</width>
@@ -72,11 +90,17 @@
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>100</y>
+      <x>210</x>
+      <y>80</y>
       <width>161</width>
       <height>61</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="title">
      <string>Option Type:</string>
@@ -89,6 +113,12 @@
        <width>89</width>
        <height>16</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string>Call</string>
@@ -106,64 +136,52 @@
        <height>16</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Put</string>
      </property>
     </widget>
    </widget>
-   <widget class="QLabel" name="label_result">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>110</y>
-      <width>101</width>
-      <height>16</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Result:</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_calculate">
     <property name="geometry">
      <rect>
-      <x>560</x>
-      <y>80</y>
-      <width>91</width>
-      <height>31</height>
+      <x>590</x>
+      <y>230</y>
+      <width>131</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Calculate</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_result_value">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>130</y>
-      <width>131</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::Box</enum>
-    </property>
-    <property name="frameShadow">
-     <enum>QFrame::Raised</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
    <widget class="QGroupBox" name="groupBox_asset1">
     <property name="geometry">
      <rect>
-      <x>230</x>
-      <y>180</y>
+      <x>210</x>
+      <y>160</y>
       <width>161</width>
       <height>371</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <property name="title">
      <string>Asset1</string>
@@ -177,55 +195,150 @@
        <height>351</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
      <widget class="QLabel" name="label_stock_price">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Stock Price: ($)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_stock_price"/>
+     <widget class="QLineEdit" name="lineEdit_stock_price">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_strike_price">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Strike Price: ($)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_strike_price"/>
+     <widget class="QLineEdit" name="lineEdit_strike_price">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_strike_price_2">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Interest Rate: (%)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_rate"/>
+     <widget class="QLineEdit" name="lineEdit_rate">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_vol1">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Volatility: (%)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_vol1"/>
+     <widget class="QLineEdit" name="lineEdit_vol1">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_maturity">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Maturity: (years)</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_maturity"/>
+     <widget class="QLineEdit" name="lineEdit_maturity">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+     </widget>
      <widget class="QLabel" name="label_step">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Step:</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_step">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
      </widget>
      <widget class="QLabel" name="label_paths">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Path:</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_path">
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string/>
       </property>
@@ -235,15 +348,27 @@
    <widget class="QWidget" name="widget_asian_pars" native="true">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>190</y>
+      <x>40</x>
+      <y>160</y>
       <width>161</width>
-      <height>261</height>
+      <height>311</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_asian_pars">
      <item>
       <widget class="QGroupBox" name="groupBox_numof_assets">
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="autoFillBackground">
         <bool>false</bool>
        </property>
@@ -265,6 +390,12 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Single</string>
         </property>
@@ -281,6 +412,12 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Basket</string>
         </property>
@@ -289,6 +426,12 @@
      </item>
      <item>
       <widget class="QGroupBox" name="groupBox_pricing_type">
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="title">
         <string>Type of pricer:</string>
        </property>
@@ -300,6 +443,12 @@
           <width>89</width>
           <height>16</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Geometric</string>
@@ -317,6 +466,12 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Arithmetic</string>
         </property>
@@ -325,6 +480,12 @@
      </item>
      <item>
       <widget class="QGroupBox" name="groupBox_control_variate">
+       <property name="font">
+        <font>
+         <family>Century Gothic</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="title">
         <string>Control Variate:</string>
        </property>
@@ -337,6 +498,12 @@
           <height>16</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>None</string>
         </property>
@@ -348,13 +515,22 @@
         <property name="geometry">
          <rect>
           <x>20</x>
-          <y>50</y>
-          <width>89</width>
-          <height>16</height>
+          <y>40</y>
+          <width>101</width>
+          <height>21</height>
          </rect>
         </property>
+        <property name="font">
+         <font>
+          <family>Century Gothic</family>
+          <pointsize>10</pointsize>
+         </font>
+        </property>
+        <property name="acceptDrops">
+         <bool>false</bool>
+        </property>
         <property name="text">
-         <string>Geometric</string>
+         <string>Geo Asian</string>
         </property>
        </widget>
       </widget>
@@ -364,11 +540,17 @@
    <widget class="QWidget" name="widget_asset2" native="true">
     <property name="geometry">
      <rect>
-      <x>410</x>
-      <y>180</y>
+      <x>370</x>
+      <y>160</y>
       <width>161</width>
       <height>331</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
     </property>
     <widget class="QLineEdit" name="lineEdit_corr">
      <property name="geometry">
@@ -378,6 +560,12 @@
        <width>121</width>
        <height>24</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
      </property>
      <property name="text">
       <string/>
@@ -392,6 +580,12 @@
        <height>15</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="text">
       <string>Correlation: (%)</string>
      </property>
@@ -405,6 +599,12 @@
        <height>261</height>
       </rect>
      </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Asset 2</string>
      </property>
@@ -416,6 +616,12 @@
         <width>121</width>
         <height>15</height>
        </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
       </property>
       <property name="text">
        <string>Stock Price: ($)</string>
@@ -430,6 +636,12 @@
         <height>15</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
       <property name="text">
        <string>Volatility: (%)</string>
       </property>
@@ -443,6 +655,12 @@
         <height>24</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
      </widget>
      <widget class="QLineEdit" name="lineEdit_stock_price_2">
       <property name="geometry">
@@ -453,8 +671,193 @@
         <height>24</height>
        </rect>
       </property>
+      <property name="font">
+       <font>
+        <family>Century Gothic</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_conf">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>350</y>
+      <width>131</width>
+      <height>101</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Confidence:</string>
+    </property>
+    <widget class="QLabel" name="label_result_value_2">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>60</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_result_value_1">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>280</y>
+      <width>131</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="title">
+     <string>Result:</string>
+    </property>
+    <widget class="QLabel" name="label_result_value">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>131</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Century Gothic</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Box</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>20</y>
+      <width>391</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Copperplate Gothic Light</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Option Pricer by Group19</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::PlainText</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>60</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ZHAN Hui 3035249227</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>590</x>
+      <y>110</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Century Gothic</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>LIU Jiahe 3035237365</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::RichText</enum>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -470,24 +873,11 @@
     <property name="title">
      <string>Program</string>
     </property>
-    <addaction name="actionAbout"/>
     <addaction name="actionExit"/>
    </widget>
    <addaction name="menuAa"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="actionReset"/>
-  </widget>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
@@ -507,14 +897,6 @@
   <action name="actionReadme">
    <property name="text">
     <string>readme</string>
-   </property>
-  </action>
-  <action name="actionReset">
-   <property name="text">
-    <string>Reset</string>
-   </property>
-   <property name="toolTip">
-    <string>Reset</string>
    </property>
   </action>
  </widget>

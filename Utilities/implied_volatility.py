@@ -1,12 +1,10 @@
-import csv
-import math
-from datetime import datetime
+from math import *
 import black_scholes as bsf
 
 
 def implied_volatility(ty, S, K, T, r, price_true, q=0):
     # start sigma
-    sigma_hat = (2 * abs(math.log(S / K) + (r - q) * T) / T) ** 0.5
+    sigma_hat = (2 * abs(log(S / K) + (r - q) * T) / T) ** 0.5
 
     # NEWTON's method
     tol = 1.0e-8
@@ -14,6 +12,13 @@ def implied_volatility(ty, S, K, T, r, price_true, q=0):
     sigmadiff = 1
     n = 1
     nmax = 100
+
+    if ty == 'C':
+        if (price_true < max((S * exp(-q * T) - K * exp(-r * T)), 0)) or (price_true > S * exp(-q * T)):
+            return 'NaN'
+    elif ty == 'P':
+        if (price_true < max((K * exp(-r * T) - S * exp(-q * T)), 0)) or (price_true > K * exp(-r * T)):
+            return 'NaN'
 
     while (sigmadiff >= tol and n < nmax):
         price = 0
@@ -31,4 +36,4 @@ def implied_volatility(ty, S, K, T, r, price_true, q=0):
 
 
 if __name__ == "__main__":
-    print implied_volatility('C', 1.96, 1.8, 8, 0.04, 0.1522, 0.2)
+    print implied_volatility('C', (1.958 + 1.958) / 2, 1.8, float(8) / 365, 0.04, 0.1547, 0.2)

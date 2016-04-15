@@ -1,8 +1,7 @@
 import math
-from math import log, e
 from scipy.stats import norm
 from numpy import std, multiply, mean, var
-from numpy.random import normal
+from numpy import random
 from closed_form import geo_basket
 
 
@@ -26,13 +25,14 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
     Spath = [0] * N
     arithPayoff = [0] * M
     geoPayoff = [0] * M
+    random.seed(0)
     for i in xrange(M):
 
-        growthFactor = drift * math.exp(v * (Dt ** 0.5) * normal(0, 1))
+        growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.randn())
         Spath[0] = S * growthFactor
 
         for j in xrange(1, N):
-            growthFactor = drift * math.exp(v * (Dt ** 0.5) * normal(0, 1))
+            growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.randn())
             Spath[j] = Spath[j - 1] * growthFactor
 
         # Arithmetic mean
@@ -52,7 +52,7 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
     # Standard Monte Carlo
     Pmean = mean(arithPayoff)
     Pstd = std(arithPayoff)
-    confmc = (Pmean,Pmean - 1.96 * Pstd / (M ** 0.5), Pmean + 1.96 * Pstd / (M ** 0.5))
+    confmc = (Pmean, Pmean - 1.96 * Pstd / (M ** 0.5), Pmean + 1.96 * Pstd / (M ** 0.5))
 
     # Control Variate
     covXY = mean(multiply(arithPayoff, geoPayoff)) - \
@@ -63,7 +63,7 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
     Z = [arithPayoff[k] + theta * (geo - geoPayoff[k]) for k in xrange(M)]
     Zmean = mean(Z)
     Zstd = std(Z)
-    confcv = (Zmean,Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
+    confcv = (Zmean, Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
 
     if option == "STD":
         return confmc  # for no control variate
@@ -76,10 +76,11 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
 def ari_basket(type, S1, S2, K, T, r, v1, v2, rou, M, option):
     arithPayoff = [0] * M
     geoPayoff = [0] * M
+    random.seed(0)
     for i in xrange(M):
 
-        z1 = normal(0, 1)
-        z2 = rou * z1 + ((1 - rou * rou) ** 0.5) * normal(0, 1)
+        z1 = random.randn()
+        z2 = rou * z1 + ((1 - rou * rou) ** 0.5) * random.randn()
         S1T = S1 * math.exp((r - 0.5 * v1 * v1) * T + v1 * (T ** 0.5) * z1)
         S2T = S2 * math.exp((r - 0.5 * v2 * v2) * T + v2 * (T ** 0.5) * z2)
 
@@ -110,7 +111,7 @@ def ari_basket(type, S1, S2, K, T, r, v1, v2, rou, M, option):
     Z = [arithPayoff[k] + theta * (geo - geoPayoff[k]) for k in xrange(M)]
     Zmean = mean(Z)
     Zstd = std(Z)
-    confcv = (Zmean ,Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
+    confcv = (Zmean, Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
 
     if option == "STD":
         return confmc  # for no control variate
