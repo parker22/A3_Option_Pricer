@@ -14,7 +14,8 @@ def implied_volatility(ty, S, K, T, r, price_true, q=0):
     nmax = 100
 
     if ty == 'C':
-        if (price_true < max((S * exp(-q * T) - K * exp(-r * T)), 0)) or (price_true > S * exp(-q * T)):
+        if (price_true < max((S * exp(-q * T) - K * exp(-r * T)), 0)) \
+                or (price_true > S * exp(-q * T)):
             return 'NaN'
     elif ty == 'P':
         if (price_true < max((K * exp(-r * T) - S * exp(-q * T)), 0)) or (price_true > K * exp(-r * T)):

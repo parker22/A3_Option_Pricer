@@ -25,14 +25,14 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
     Spath = [0] * N
     arithPayoff = [0] * M
     geoPayoff = [0] * M
-    random.seed(0)
+    random.seed(M)
     for i in xrange(M):
 
-        growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.randn())
+        growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.normal(0,1))
         Spath[0] = S * growthFactor
 
         for j in xrange(1, N):
-            growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.randn())
+            growthFactor = drift * math.exp(v * (Dt ** 0.5) * random.normal(0,1))
             Spath[j] = Spath[j - 1] * growthFactor
 
         # Arithmetic mean
@@ -66,8 +66,14 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
     confcv = (Zmean, Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
 
     if option == "STD":
+        print Pmean
+        print Pmean - 1.96 * Pstd / (M ** 0.5)
+        print Pmean + 1.96 * Pstd / (M ** 0.5)
         return confmc  # for no control variate
     elif option == "GEO":
+        print Zmean
+        print Zmean - 1.96 * Zstd / (M ** 0.5)
+        print Zmean + 1.96 * Zstd / (M ** 0.5)
         return confcv  # for geometric asian option
     else:
         return
@@ -76,11 +82,11 @@ def ari_asian(type, S, K, T, r, v, N, M, option):
 def ari_basket(type, S1, S2, K, T, r, v1, v2, rou, M, option):
     arithPayoff = [0] * M
     geoPayoff = [0] * M
-    random.seed(0)
+    random.seed(M)
     for i in xrange(M):
 
-        z1 = random.randn()
-        z2 = rou * z1 + ((1 - rou * rou) ** 0.5) * random.randn()
+        z1 = random.normal(0,1)
+        z2 = rou * z1 + ((1 - rou * rou) ** 0.5) * random.normal(0,1)
         S1T = S1 * math.exp((r - 0.5 * v1 * v1) * T + v1 * (T ** 0.5) * z1)
         S2T = S2 * math.exp((r - 0.5 * v2 * v2) * T + v2 * (T ** 0.5) * z2)
 
@@ -114,8 +120,10 @@ def ari_basket(type, S1, S2, K, T, r, v1, v2, rou, M, option):
     confcv = (Zmean, Zmean - 1.96 * Zstd / (M ** 0.5), Zmean + 1.96 * Zstd / (M ** 0.5))
 
     if option == "STD":
+        print confmc
         return confmc  # for no control variate
     elif option == "GEO":
+        print confcv
         return confcv  # for geometric basket asian
     else:
         return
